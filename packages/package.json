@@ -1,0 +1,14 @@
+{
+  "name": "vite-create-21color",
+  "version": "1.0.0",
+  "description": "vite create 21color",
+  "author": "21color",
+  "bin": {
+    "vite-create-21color": "./bin/generator.js"
+  },
+
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  }
+}

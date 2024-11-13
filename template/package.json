@@ -1,7 +1,10 @@
 {
-  "name": "vite-template-21color-template",
-  "version": "1.0.3",
+  "name": "create-react-21color",
+  "version": "1.0.0",
   "type": "module",
+  "bin": {
+    "vite-create-21color": "./src/main.ts"
+  },
   "keywords": [
     "vite",
     "template",
