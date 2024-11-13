@@ -2,7 +2,7 @@
 const { execSync } = require("child_process");
 const path = require("path");
 const fs = require("fs");
-const { removeSync, copySync } = require("fs-extra");
+const degit = require("degit");
 
 // project-name 미입력
 if (process.argv.length < 3) {
@@ -13,61 +13,35 @@ if (process.argv.length < 3) {
 
 const projectName = process.argv[2];
 const currentPath = process.cwd();
-const isCurrentPathProject = projectName === ".";
+const projectPath = path.join(currentPath, projectName);
+const GIT_REPO = "21color/21color-template/template";
 
-const tempPath = path.join(currentPath, "temp");
-const projectPath = isCurrentPathProject
-  ? currentPath
-  : path.join(currentPath, projectName);
-
-const GIT_REPO = "https://github.com/21color/21color-template.git";
-
-// project-name 입력시
-if (!isCurrentPathProject) {
-  try {
-    fs.mkdirSync(projectPath);
-  } catch (err) {
-    if (err.code === "EEXIST") {
-      // 이미 해당 경로 존재
-      console.log(
-        `[ERROR]: The file ${projectName} already exist in the current directory.`
-      );
-    } else {
-      console.log(error);
-    }
-    process.exit(1);
-  }
-}
 
 async function main() {
   try {
-    // git clone
-    console.log("[INFO]: Downloading vite-create-21...");
-    execSync(`git clone ${GIT_REPO} ${tempPath}`);
+    // project-name 경로 확인
 
-    // 임시 폴더에서 template만 복사
-    console.log("[INFO]: Copying files...");
-    copySync(`${tempPath}/template`, projectPath);
-
-    // 임시 폴더 삭제
-    removeSync(tempPath);
-
-    // 현재 경로 이동
-    console.log("[INFO]: Moving into directory...");
-    if (!isCurrentPathProject) {
-      process.chdir(projectPath);
+    if (!fs.existsSync(projectPath)) {
+      fs.mkdirSync(projectPath);
+    } else {
+      console.log(`[ERROR]: ${projectName} is already exist in the directory`);
+      process.exit(1);
     }
 
-    // 의존성 설치
-    console.log("[INFO]: install dependencies...");
-    execSync("yarn install", {
-      stdio: "inherit",
-    });
+  // degit을 이용하여 git repo clone
+  console.log("[INFO]: downloading template...");
+  const emitter = degit(GIT_REPO, { cache: false, force: true, verbose: true });
+  await emitter.clone(projectPath);
 
-    // SUCCESS !
-    console.log("[SUCCESS]: Success to vite-create-21. Available now !");
+  process.chdir(projectPath);
+
+  console.log("[INFO]: installing dependencies...");
+  execSync("yarn install", { stdio: "inherit" });
+
+  console.log("[SUCCESS]: Project created successfully");
+
   } catch (error) {
-    console.log(error);
+  console.error("[ERROR]: Project creation failed", error);
   }
 }
 
