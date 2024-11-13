@@ -42,7 +42,7 @@ if (!isCurrentPathProject) {
 async function main() {
   try {
     // git clone
-    console.log("[INFO]: Downloading vite-create-21color...");
+    console.log("[INFO]: Downloading vite-create-21...");
     execSync(`git clone ${GIT_REPO} ${tempPath}`);
 
     // 임시 폴더에서 template만 복사
@@ -63,7 +63,7 @@ async function main() {
     execSync("npm install");
 
     // SUCCESS !
-    console.log("[SUCCESS]: Success to vite-create-21color. Available now !");
+    console.log("[SUCCESS]: Success to vite-create-21. Available now !");
   } catch (error) {
     console.log(error);
   }

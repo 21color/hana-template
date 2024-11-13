@@ -1,10 +1,10 @@
 {
-  "name": "vite-create-21color",
+  "name": "vite-create-21",
   "version": "1.0.3",
-  "description": "vite create 21color",
+  "description": "vite create 21",
   "author": "21color",
   "bin": {
-    "vite-create-21color": "./bin/generator.js"
+    "vite-create-21": "./bin/generator.js"
   },
 
   "license": "MIT",
