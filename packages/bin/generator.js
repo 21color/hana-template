@@ -60,7 +60,9 @@ async function main() {
 
     // 의존성 설치
     console.log("[INFO]: install dependencies...");
-    execSync("npm install");
+    execSync("yarn install", {
+      stdio: "inherit",
+    });
 
     // SUCCESS !
     console.log("[SUCCESS]: Success to vite-create-21. Available now !");
