@@ -1625,6 +1625,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"create-react-21color@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "create-react-21color@workspace:."
+  dependencies:
+    "@emotion/css": "npm:^11.13.4"
+    "@emotion/react": "npm:^11.13.3"
+    "@emotion/styled": "npm:^11.13.0"
+    "@eslint/js": "npm:^9.13.0"
+    "@types/eslint-plugin-jsx-a11y": "npm:^6"
+    "@types/react": "npm:^18.3.12"
+    "@types/react-dom": "npm:^18.3.1"
+    "@vitejs/plugin-react": "npm:^4.3.3"
+    axios: "npm:^1.7.7"
+    eslint: "npm:^9.14.0"
+    eslint-config-airbnb: "npm:^19.0.4"
+    eslint-config-prettier: "npm:^9.1.0"
+    eslint-plugin-import: "npm:^2.31.0"
+    eslint-plugin-jsx-a11y: "npm:^6.10.2"
+    eslint-plugin-prettier: "npm:^5.2.1"
+    eslint-plugin-react: "npm:^7.37.2"
+    eslint-plugin-react-hooks: "npm:^5.0.0"
+    eslint-plugin-react-refresh: "npm:^0.4.14"
+    globals: "npm:^15.11.0"
+    prettier: "npm:^3.3.3"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
+    react-query: "npm:^3.39.3"
+    typescript: "npm:~5.6.2"
+    typescript-eslint: "npm:^8.11.0"
+    vite: "npm:^5.4.10"
+  bin:
+    vite-create-21color: ./src/main.ts
+  languageName: unknown
+  linkType: soft
+
 "cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.2":
   version: 7.0.5
   resolution: "cross-spawn@npm:7.0.5"
@@ -4724,39 +4759,6 @@ __metadata:
   checksum: 10c0/4ef57b45aa820d7ac6496e9208559986c665e49447cb072744c13b66925a362d96dd5a46c4530a6b8e203e5db5fe849369444440cb22ecfc26c679359e5dfa3c
   languageName: node
   linkType: hard
-
-"vite-template-21color-template@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "vite-template-21color-template@workspace:."
-  dependencies:
-    "@emotion/css": "npm:^11.13.4"
-    "@emotion/react": "npm:^11.13.3"
-    "@emotion/styled": "npm:^11.13.0"
-    "@eslint/js": "npm:^9.13.0"
-    "@types/eslint-plugin-jsx-a11y": "npm:^6"
-    "@types/react": "npm:^18.3.12"
-    "@types/react-dom": "npm:^18.3.1"
-    "@vitejs/plugin-react": "npm:^4.3.3"
-    axios: "npm:^1.7.7"
-    eslint: "npm:^9.14.0"
-    eslint-config-airbnb: "npm:^19.0.4"
-    eslint-config-prettier: "npm:^9.1.0"
-    eslint-plugin-import: "npm:^2.31.0"
-    eslint-plugin-jsx-a11y: "npm:^6.10.2"
-    eslint-plugin-prettier: "npm:^5.2.1"
-    eslint-plugin-react: "npm:^7.37.2"
-    eslint-plugin-react-hooks: "npm:^5.0.0"
-    eslint-plugin-react-refresh: "npm:^0.4.14"
-    globals: "npm:^15.11.0"
-    prettier: "npm:^3.3.3"
-    react: "npm:^18.3.1"
-    react-dom: "npm:^18.3.1"
-    react-query: "npm:^3.39.3"
-    typescript: "npm:~5.6.2"
-    typescript-eslint: "npm:^8.11.0"
-    vite: "npm:^5.4.10"
-  languageName: unknown
-  linkType: soft
 
 "vite@npm:^5.4.10":
   version: 5.4.10
