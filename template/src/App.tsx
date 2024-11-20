@@ -1,14 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { match } from 'ts-pattern';
+import './App.css';
+import reactLogo from './assets/react.svg';
+import RenderTable from './components/RenderTable';
+import { fetchAirlines, increment } from './store/counterSlice';
+import { AppDispatch, RootState } from './store/store';
+import viteLogo from '/vite.svg';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { count, data, status } = useSelector(
+    (state: RootState) => state.counter,
+  );
+
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <>
       <div>
+        {match(status)
+          .with('loading', () => <div>Loading...</div>)
+          .with('error', () => <div>Error fetching data</div>)
+          .with('success', () => <RenderTable data={data} state={status} />)
+          .otherwise(() => null)}
+
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -18,8 +32,9 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={() => dispatch(increment())}>count is {count}</button>
+        <button onClick={() => dispatch(fetchAirlines())}>
+          Fetch Airlines
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
@@ -29,7 +44,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
