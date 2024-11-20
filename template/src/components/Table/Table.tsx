@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 import { TableBody } from './TableBody';
 import { TableCell } from './TableCell';
 import { TableHeader } from './TableHeader';
@@ -11,6 +11,22 @@ export interface TableProps<T> {
   className?: string;
 }
 
+const TableContext = createContext<TableProps<unknown> | undefined>(undefined);
+
+export const TableProvider = <T,>({
+  children,
+  value,
+}: {
+  children: ReactNode;
+  value: TableProps<T>;
+}) => {
+  return (
+    <TableContext.Provider value={value as TableProps<unknown>}>
+      {children}
+    </TableContext.Provider>
+  );
+};
+
 export const Table = <T extends unknown>({
   columns,
   data,
@@ -20,11 +36,23 @@ export const Table = <T extends unknown>({
   const tableClassName = className ? `${className}-table` : 'table';
 
   return (
-    <table className={tableClassName}>
-      <TableHeader columns={columns} />
-      <TableBody data={data} renderRow={renderRow} />
-    </table>
+    <TableProvider value={{ columns, data, renderRow }}>
+      <table className={tableClassName}>
+        <TableHeader />
+        <TableBody />
+      </table>
+    </TableProvider>
   );
+};
+
+export const useTableValue = () => {
+  const value = useContext(TableContext);
+
+  if (!value) {
+    throw new Error('useTableValue must be used within a Table component');
+  }
+
+  return value;
 };
 
 Table.Header = TableHeader;

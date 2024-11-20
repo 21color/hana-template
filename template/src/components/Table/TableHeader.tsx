@@ -1,12 +1,14 @@
+import { useTableValue } from './Table';
 import { TableCell } from './TableCell';
 import { TableRow } from './TableRow';
 
 export interface TableHeaderProps {
   className?: string;
-  columns: string[];
 }
 
-export const TableHeader = ({ columns, className }: TableHeaderProps) => {
+export const TableHeader = ({ className }: TableHeaderProps) => {
+  const { columns } = useTableValue();
+
   return (
     <thead className={className}>
       <TableRow>

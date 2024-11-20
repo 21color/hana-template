@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { match } from 'ts-pattern';
 import './App.css';
 import reactLogo from './assets/react.svg';
-import RenderTable from './components/RenderTable';
+import { TableData } from './components/RenderTable';
+import { Table } from './components/Table/Table';
 import { fetchAirlines, increment } from './store/counterSlice';
 import { AppDispatch, RootState } from './store/store';
 import viteLogo from '/vite.svg';
@@ -14,13 +15,29 @@ function App() {
 
   const dispatch = useDispatch<AppDispatch>();
 
+  const renderRow = (item: TableData<string>, index: number) => {
+    return (
+      <Table.Row key={index}>
+        {Object.values(item).map((value, index) => (
+          <Table.Cell key={index}>{String(value)}</Table.Cell>
+        ))}
+      </Table.Row>
+    );
+  };
+
   return (
     <>
       <div>
         {match(status)
           .with('loading', () => <div>Loading...</div>)
           .with('error', () => <div>Error fetching data</div>)
-          .with('success', () => <RenderTable data={data} state={status} />)
+          .with('success', () => (
+            <Table
+              columns={Object.keys(data[0])}
+              data={data}
+              renderRow={renderRow}
+            />
+          ))
           .otherwise(() => null)}
 
         <a href="https://vite.dev" target="_blank">

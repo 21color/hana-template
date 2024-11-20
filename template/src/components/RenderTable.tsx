@@ -1,11 +1,11 @@
 import { match } from 'ts-pattern';
 import { Table } from './Table/Table';
 
-interface TableData<T> {
+export interface TableData<T> {
   [key: string]: T;
 }
 
-interface RenderTableProps<T> {
+export interface RenderTableProps<T> {
   data: TableData<T>[];
   state?: 'loading' | 'success' | 'error';
 }

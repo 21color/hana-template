@@ -1,15 +1,11 @@
-import { ReactNode } from 'react';
+import { useTableValue } from './Table';
 
-export interface TableBodyProps<T> {
+export interface TableBodyProps {
   className?: string;
-  data: T[];
-  renderRow: (item: T, index: number) => ReactNode;
 }
 
-export const TableBody = <T extends unknown>({
-  data,
-  renderRow,
-  className,
-}: TableBodyProps<T>) => {
+export const TableBody = ({ className }: TableBodyProps) => {
+  const { data, renderRow } = useTableValue();
+
   return <tbody className={className}>{data.map(renderRow)}</tbody>;
 };
